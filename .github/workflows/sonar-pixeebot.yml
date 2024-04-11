@@ -10,7 +10,6 @@ jobs:
   share:
     name: Upload Sonar Results to Pixeebot
     runs-on: ubuntu-latest
-    if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
       - uses: pixee/upload-tool-results-action@v1
         with:
