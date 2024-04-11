@@ -1,6 +1,9 @@
 name: SonarCloud Code Analysis
 on:
   workflow_dispatch:
+
+permissions:
+  id-token: write
   
 jobs:
   sonarcloud:
@@ -15,3 +18,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+      - name: Upload Tool Results To Pixeebot
+        uses: pixee/upload-tool-results-action@v1
+        with:
+          tool: sonar
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
